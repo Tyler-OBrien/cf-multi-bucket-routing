@@ -1,0 +1,29 @@
+name = "cf-r2-bucket-multi-region"
+main = "src/index.ts"
+compatibility_date = "2024-02-28"
+
+[[r2_buckets]]
+binding = 'apac'
+bucket_name = 'cf-bucket-routing-apac'
+preview_bucket_name = 'cf-bucket-routing-apac'
+
+
+[[r2_buckets]]
+binding = 'eeur'
+bucket_name = 'cf-bucket-routing-eeur'
+preview_bucket_name = 'cf-bucket-routing-eeur'
+
+[[r2_buckets]]
+binding = 'enam'
+bucket_name = 'cf-bucket-routing-enam'
+preview_bucket_name = 'cf-bucket-routing-enam'
+
+[[r2_buckets]]
+binding = 'weur'
+bucket_name = 'cf-bucket-routing-weur'
+preview_bucket_name = 'cf-bucket-routing-weur'
+
+[[r2_buckets]]
+binding = 'wnam'
+bucket_name = 'cf-bucket-routing-wnam'
+preview_bucket_name = 'cf-bucket-routing-wnam'
