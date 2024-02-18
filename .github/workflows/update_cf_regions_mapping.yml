@@ -3,6 +3,8 @@ name: update_cf_regions_mapping
 on:
   push:
   pull_request:
+  schedule: 
+      - cron: '1 6,20 * * *'
 
 jobs:
   build:
