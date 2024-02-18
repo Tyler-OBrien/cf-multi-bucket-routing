@@ -23,6 +23,7 @@ export default {
 		if (tryGetRegion && SUPPORTED_REGIONS.includes(tryGetRegion))
 			return tryGetRegion;
 
+		console.log(`Fallback, couldn't find anything for ${iata}`)
 		// ok we're falling back. Let's use continent and flatten it:
 		// This isn't perfect, and is partially based on what I've noticed. I think East  US / West EU is a better fallback for those. For Africa going to  WEUR and South America going to ENAM, this matches DO routing behavior.
 		switch (continent) {
@@ -46,8 +47,14 @@ export default {
 
 		const url = new URL(req.url);
 		const key = url.pathname.slice(1);
-
-		var getBucketLocation = this.getRegion(req.cf?.colo, req.cf?.continent);
+		let getBucketLocation = null;
+		if (url.searchParams.has("region")) {
+			let getRegionOverride = url.searchParams.get("region");
+			if (getRegionOverride && SUPPORTED_REGIONS.includes(getRegionOverride))
+				getBucketLocation = getRegionOverride;
+		}
+		if (getBucketLocation == null)
+			 getBucketLocation = this.getRegion(req.cf?.colo, req.cf?.continent);
 		const object = await ((env[getBucketLocation] as R2Bucket).get(key));
 
 		
