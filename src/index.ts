@@ -54,23 +54,25 @@ export default {
 				getBucketLocation = getRegionOverride;
 		}
 		if (getBucketLocation == null)
-			 getBucketLocation = this.getRegion(req.cf?.colo, req.cf?.continent);
+			getBucketLocation = this.getRegion(req.cf?.colo, req.cf?.continent);
 		const object = await ((env[getBucketLocation] as R2Bucket).get(key));
 
-		
-        if (object === null) {
-			return new Response('Object Not Found', { status: 404, headers: {
-				"region": getBucketLocation
-			} });
-		  }
-  
-		  const headers = new Headers();
-		  object.writeHttpMetadata(headers);
-		  headers.set('etag', object.httpEtag);
-		  headers.set('region', getBucketLocation)
-  
-		  return new Response(object.body, {
+
+		if (object === null) {
+			return new Response('Object Not Found', {
+				status: 404, headers: {
+					"region": getBucketLocation
+				}
+			});
+		}
+
+		const headers = new Headers();
+		object.writeHttpMetadata(headers);
+		headers.set('etag', object.httpEtag);
+		headers.set('region', getBucketLocation)
+
+		return new Response(object.body, {
 			headers,
-		  });
+		});
 	},
 };
