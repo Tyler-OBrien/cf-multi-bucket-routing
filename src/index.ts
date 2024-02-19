@@ -20,8 +20,15 @@ const SUPPORTED_REGIONS = ['enam', 'wnam', 'weur', 'eeur', 'apac']
 export default {
 	getRegion(iata: regions, continent: string | undefined) {
 		const tryGetRegion = regions?.results[iata];
-		if (tryGetRegion && SUPPORTED_REGIONS.includes(tryGetRegion))
-			return tryGetRegion;
+		if (tryGetRegion)
+		{
+			if (SUPPORTED_REGIONS.includes(tryGetRegion))
+				return tryGetRegion;
+			else 
+				console.log(`Fallback, we tried to use ${tryGetRegion}, but it wasn't part of SUPPORTED_REGIONS, for ${iata}.`) 
+			//  This code was designed so you have buckets in all locations. Kind of hard to make a smart fallback as well based on new regions we don't know the name of yet.
+			//  The continent switching below should be enough, and would  also have to be updated  for new locations
+		}
 
 		console.log(`Fallback, couldn't find anything for ${iata}`)
 		// ok we're falling back. Let's use continent and flatten it:
@@ -41,7 +48,7 @@ export default {
 				return 'apac';
 		}
 
-		return SUPPORTED_REGIONS[0]; // customize fallback
+		return SUPPORTED_REGIONS[0]; // simple fallback
 	},
 	async fetch(req: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 
