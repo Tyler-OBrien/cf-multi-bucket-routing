@@ -48,7 +48,7 @@ jobs:
       with:
             apiToken: ${{ secrets.CF_API_TOKEN_DEPLOY }}
             workingDirectory: ""
-            wranglerVersion: "3"
+            wranglerVersion: "3.69.1"
   keepalive-job:
     name: Keepalive Workflow
     runs-on: ubuntu-latest
