@@ -54,7 +54,7 @@ export default {
 		const headers = new Headers();
 		object.writeHttpMetadata(headers);
 		headers.set('etag', object.httpEtag);
-		headers.set('routing', getBucketLocation.region);
+		headers.set('routing', getBucketLocation.routing);
 		headers.set('region', getBucketLocation.region);
 
 		return new Response(object.body, {
