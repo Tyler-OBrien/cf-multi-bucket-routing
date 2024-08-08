@@ -19,7 +19,7 @@ jobs:
             for i in {1..5}
             do 
                 # Fetch data
-                response=$(curl --write-out "%{http_code}" --silent --output src/routing.json "https://colo.cloudflare.chaika.me/?iataregion")
+                response=$(curl --write-out "%{http_code}" --silent --output src/routing.json "https://delay.cloudflare.chaika.me/v2/colos/iataregionr2")
                 
                 # Check response code
                 if [ "$response" -ne 200 ]; then
