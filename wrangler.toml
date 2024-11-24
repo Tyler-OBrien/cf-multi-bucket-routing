@@ -29,3 +29,8 @@ preview_bucket_name = 'cf-bucket-routing-weur'
 binding = 'wnam'
 bucket_name = 'cf-bucket-routing-wnam'
 preview_bucket_name = 'cf-bucket-routing-wnam'
+
+[[r2_buckets]]
+binding = 'oc'
+bucket_name = 'cf-bucket-routing-oc'
+preview_bucket_name = 'cf-bucket-routing-oc'

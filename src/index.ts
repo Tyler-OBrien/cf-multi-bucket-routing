@@ -24,7 +24,7 @@ class GetRegionResult {
 }
 
 // Customize with your bucket bindings, we're assuming each binding bucket is 1 to 1 named with each region. See my wrangler_toml for more info
-const SUPPORTED_REGIONS = ['enam', 'wnam', 'weur', 'eeur', 'apac'];
+const SUPPORTED_REGIONS = ['enam', 'wnam', 'weur', 'eeur', 'apac', 'oc'];
 
 export default {
 	async fetch(req: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
